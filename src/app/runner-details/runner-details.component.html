@@ -1,0 +1,40 @@
+<div *ngIf="Runner"> <!-- is Runner exists it will do the following -->
+  <h1 class="jumbotron text-center">{{Runner.Name}}</h1> <!-- using the {{ }} allows me to pass in properties, this is
+    data binding-->
+  <div class="container">
+    <div class="row">
+      <h3 class="col-10">{{Runner.Name}}'s Races</h3>
+      <button type="button" class="col-md-auto btn btn-dark" (click)="goBack()">Go Back</button> <!-- the ( ) means it is listening
+       for an event and the event is click which means onclick-->
+    </div>
+    <br>
+    <table *ngIf="Runner.listOfRaces.length > 0" class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Distance</th>
+        <th>Target Time</th>
+        <th>Actual Time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of Runner.listOfRaces"> <!-- the 'item' can be anything I want and will represent the index in the
+      loop over the array -->
+        <td>{{item.RaceId}}</td>
+        <td>{{item.RaceTitle}}</td>
+        <td>{{item.RaceDate}}</td>
+        <td>{{item.RaceDistance}}</td>
+        <td>{{item.RaceTargetTime}}</td>
+        <td>{{item.RaceActualTime}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="Runner.listOfRaces.length == 0">
+      <div class="alert alert-primary" role="alert">No Races Available For This User</div>
+    </div>
+    <br><p>UKAN Number: {{Runner.ukaNumber}}</p>
+  </div>
+</div>
+
